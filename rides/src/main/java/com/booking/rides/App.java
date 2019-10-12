@@ -46,40 +46,6 @@ public class App {
         }
     }
 
-    public JSONArray getSupplierOptions(String url) throws Exception {
-
-        try {
-            URL obj = new URL(url);
-            HttpURLConnection con = (HttpURLConnection) obj.openConnection();
-
-            con.setRequestMethod("GET");
-            con.setRequestProperty("User-Agent", USER_AGENT);
-
-            int responseCode = con.getResponseCode();
-            System.out.println("\nSending 'GET' request to URL : " + url);
-            System.out.println("Response Code : " + responseCode);
-
-            if (responseCode > 199 && responseCode < 300) {
-
-                BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream()));
-                String inputLine = in.readLine();
-                JSONObject response = new JSONObject(inputLine);
-                in.close();
-
-                System.out.println(response);
-
-                JSONArray car_options = response.getJSONArray("options");
-                return car_options;
-            }
-            else {
-                throw new Exception("Something went wrong");
-            }
-        }
-        catch(Exception e) {
-            throw e;
-        }
-    }
-
     private void getDaveTaxis(String pickup, String dropoff, String passengers) throws Exception {
 
         try {
@@ -202,6 +168,40 @@ public class App {
         catch(Exception e) {
             System.out.println("Something went wrong");
             return false;
+        }
+    }
+
+    public JSONArray getSupplierOptions(String url) throws Exception {
+
+        try {
+            URL obj = new URL(url);
+            HttpURLConnection con = (HttpURLConnection) obj.openConnection();
+
+            con.setRequestMethod("GET");
+            con.setRequestProperty("User-Agent", USER_AGENT);
+
+            int responseCode = con.getResponseCode();
+            System.out.println("\nSending 'GET' request to URL : " + url);
+            System.out.println("Response Code : " + responseCode);
+
+            if (responseCode > 199 && responseCode < 300) {
+
+                BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream()));
+                String inputLine = in.readLine();
+                JSONObject response = new JSONObject(inputLine);
+                in.close();
+
+                System.out.println(response);
+
+                JSONArray car_options = response.getJSONArray("options");
+                return car_options;
+            }
+            else {
+                throw new Exception("Something went wrong");
+            }
+        }
+        catch(Exception e) {
+            throw e;
         }
     }
 
