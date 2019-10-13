@@ -46,6 +46,14 @@ public class App {
         }
     }
 
+    /**
+     * Method to display Dave's Taxis is descending order using a sorted ArrayList.
+     *
+     * @param  pickup      String giving the pickup location
+     * @param  dropoff     String giving the dropoff location
+     * @param  passengers  String giving the number of passengers to filter results by
+     * @return             None
+     */
     private void getDaveTaxis(String pickup, String dropoff, String passengers) throws Exception {
 
         try {
@@ -54,7 +62,6 @@ public class App {
             JSONArray car_options = getSupplierOptions(daveUrl);
 
             ArrayList<JSONObject> car_options_list = new ArrayList<>();
-
             for (int i = 0; i < car_options.length(); i++) {
                 car_options_list.add((JSONObject) car_options.get(i));
             }
@@ -81,6 +88,16 @@ public class App {
         }
     }
 
+    /**
+     * Method to display all supplier options for each car type showing the cheapest option.
+     * For each car type, performs a sort of the prices from the second {price-supplier} hashmap
+     * to retrieve the smallest price value.
+     * With this key, the supplier value from the second hashmap is retrieved.
+     *
+     * @param  pickup   String giving the pickup location
+     * @param  dropoff  String giving the dropoff location
+     * @return          None
+     */
     private void getAllTaxis(String pickup, String dropoff) throws Exception {
         String[] car_types = {"STANDARD", "EXECUTIVE", "LUXURY", "PEOPLE_CARRIER", "LUXURY_PEOPLE_CARRIER", "MINIBUS"};
         HashMap<String, HashMap<Integer, String>> map = new HashMap<String, HashMap<Integer, String>>();
@@ -105,6 +122,17 @@ public class App {
         }
     }
 
+    /**
+     * Returns a hash map containing another hash map of supplier's prices for each
+     * possible car type. For each car type, a new hash map is created containing
+     * all the options from all suppliers along with the associated prices.
+     *
+     * @param  map          HashMap to be updated
+     * @param  supplier     String giving the name of the supplier
+     * @param  car_types    Array of strings representing the car types
+     * @param  car_options  JSONArray of car options to be added to the hash map
+     * @return              The updated HashMap
+     */
     public HashMap<String, HashMap<Integer, String>> createTaxisMap(
             HashMap<String, HashMap<Integer, String>> map, String supplier,
             String[] car_types, JSONArray car_options) {
@@ -125,6 +153,13 @@ public class App {
         return map;
     }
 
+    /**
+     * Returns a boolean value representing whether any filtered results were found.
+     *
+     * @param  car_options_list  Array of JSONObjects to be filtered
+     * @param  passengers        String giving the number of passengers to filter by
+     * @return                   boolean value whether results were found
+     */
     public boolean filterByPassengersNumber(ArrayList<JSONObject> car_options_list, String passengers) {
 
         try {
@@ -171,6 +206,13 @@ public class App {
         }
     }
 
+    /**
+     * Returns a JSONArray with the car options of a specific supplier.
+     * The url argument represents the URL for which the supplier API call is made.
+     *
+     * @param  url  URL giving the API endpoint
+     * @return      the response of the API in JSONArray format
+     */
     public JSONArray getSupplierOptions(String url) throws Exception {
 
         try {
