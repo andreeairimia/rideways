@@ -37,3 +37,5 @@ The following are some improvements that I would've liked to implement:
 - Exception handling: Improved custom exception handling.
 
 - For a better user experience, allow the user to retry different inputs or run parts of the application separately without having to rerun the application.
+
+- Add JUnit testing.
