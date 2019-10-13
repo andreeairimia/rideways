@@ -24,7 +24,7 @@ Optionally, the user can specify the number of passengers for Dave's Taxis resul
 
 The user will be able to see either the filtered or non-filtered options from Dave's Taxis. Following this, using the same pickup and dropoff locations, the cheapest option for each car type is shown from all suppliers.
 
-## Improvements
+## Further improvements
 
 The following are some improvements that I would've liked to implement:
 
